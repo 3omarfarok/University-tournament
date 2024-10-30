@@ -1,0 +1,29 @@
+.heroSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #739096;
+  padding: 50px;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+
+.heroSection h6 {
+  color: #020202;
+}
+
+.hero-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.heroText {
+  max-width: 100%; 
+}
+
+@media (min-width: 992px) {
+  .heroText {
+    max-width: 50%; 
+  }
+}
