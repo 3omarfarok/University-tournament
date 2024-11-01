@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
   <meta charset="UTF-8">
@@ -69,6 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <!-- Google Font Link -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./register_style.css">
 
 

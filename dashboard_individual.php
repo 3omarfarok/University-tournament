@@ -18,7 +18,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     $user = $result->fetch_assoc();
 } else {
-    echo "No user data found.";
+    echo "<h1>No user data found.</h1>";
     exit();
 }
 

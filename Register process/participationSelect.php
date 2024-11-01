@@ -21,12 +21,11 @@
   <div class="choice-container">
     <h3>Choose Participation Type</h3>
     <p>Would you like to join as an individual or as a team?</p>
-
-    <!-- Form to capture choice -->
     <form method="POST" action="handle_choice.php">
       <button type="submit" name="choice" value="individual" class="btn btn-choice">Individual</button>
       <button type="submit" name="choice" value="team" class="btn btn-choice">Team</button>
-    </form>
+      <button type="submit" name="choice" value="admin" class="btn btn-outline-light my-3">For Admins</button>
+    </form> 
   </div>
 </body>
 

@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
   <meta charset="UTF-8">
@@ -75,9 +75,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <!-- Google Font Link -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
   <link rel="stylesheet" href="./register_style.css">
+
 
 </head>
 
@@ -87,35 +89,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="POST">
       <div class="mb-3">
         <label for="name" class="form-label">Full Name</label>
-        <input type="text" class="form-control" id="name" name="name">
+        <input type="text" class="form-control input-bg" id="name" name="name">
         <?php if (isset($errors['name'])): ?>
           <p class="text-danger"><?php echo $errors['name']; ?></p>
         <?php endif; ?>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email Address</label>
-        <input type="email" class="form-control" id="email" name="email">
+        <input type="email" class="form-control input-bg" id="email" name="email">
         <?php if (isset($errors['email'])): ?>
           <p class="text-danger"><?php echo $errors['email']; ?></p>
         <?php endif; ?>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" name="password" required>
+        <input type="password" class="form-control input-bg" id="password" name="password" required>
         <?php if (isset($errors['password'])): ?>
           <p class="text-danger"><?php echo $errors['password']; ?></p>
         <?php endif; ?>
       </div>
       <div class="mb-3">
-        <label for="phone" class="form-label">Phone Number</label>
-        <input type="tel" class="form-control" id="phone" name="phone">
+        <label for="phone" class="form-label ">Phone Number</label>
+        <input type="tel" class="form-control input-bg" id="phone" name="phone">
         <?php if (isset($errors['phone'])): ?>
           <p class="text-danger"><?php echo $errors['phone']; ?></p>
         <?php endif; ?>
       </div>
       <div class="mb-3">
         <label for="age" class="form-label">Age</label>
-        <input type="number" class="form-control" id="age" name="age" min="18">
+        <input type="number" class="form-control input-bg" id="age" name="age" min="18">
         <?php if (isset($errors['age'])): ?>
           <p class="text-danger"><?php echo $errors['age']; ?></p>
         <?php endif; ?>
