@@ -1,5 +1,5 @@
 <?php
-
+// to locate the next registration page for every choice 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $choice = $_POST["choice"];
 

@@ -1,19 +1,19 @@
 <?php
 session_start();
+
+// looking at user Email
 if (!isset($_SESSION['email'])) {
   header("Location: ./Register process/register_individual.php");
   exit();
 }
-
+// DB connection
 $conn = new mysqli('localhost', 'root', '', 'resala_uni');
-
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+// to catch the user from his email
 $email = $_SESSION['email'];
-
-
 $sql = "SELECT * FROM teams WHERE email = '$email'";
 $result = $conn->query($sql);
 
@@ -25,13 +25,12 @@ if ($result->num_rows > 0) {
 }
 
 
+// to add team members
 $team_name = $user['team'];
-
-
 $members_sql = "SELECT * FROM teams WHERE team = '$team_name'";
 $members_result = $conn->query($members_sql);
 
-
+// sum the points from all members of the team
 $points_sql = "SELECT SUM(points) AS total_points FROM teams WHERE team = '$team_name'";
 $points_result = $conn->query($points_sql);
 $total_points = 0;
@@ -118,13 +117,18 @@ $conn->close();
   <?php include 'navBar.php' ?>
 
   <div class="team-dashboard-container">
-    <h1 class="welcome-header"><i class="fas fa-users icon"></i> Welcome to Your Team, <?php echo htmlspecialchars($user['name']); ?>!</h1>
+    <h1 class="welcome-header">
+      <i class="fas fa-users icon"></i>
+      Welcome to Your Team, <?php echo htmlspecialchars($user['name']); ?>!
+    </h1>
+
     <p class="text-center">Here are your team details:</p>
     <?php if ($team_name): ?>
       <ul class="list-group mt-4">
         <li class="list-group-item"><strong>Team Name:</strong> <?php echo htmlspecialchars($team_name); ?></li>
         <li class="list-group-item"><strong>Total Points:</strong> <?php echo htmlspecialchars($total_points); ?></li>
       </ul>
+      
       <h3 class="mt-4">Team Members:</h3>
       <?php if ($members_result->num_rows > 0): ?>
         <ul class="list-group mt-2">

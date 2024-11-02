@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     die("Connection failed: " . $conn->connect_error);
   }
 
+  // to get the data from user
   $team = trim($_POST['team']);
   $name = trim($_POST['name']);
   $email = trim($_POST['email']);
@@ -19,8 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $phone = trim($_POST['phone']);
   $age = trim($_POST['age']);
 
-  $errors = [];
 
+  // to check data before post it
+  $errors = [];
   if (empty($name)) {
     $errors['name'] = "Name is required.";
   }
@@ -36,12 +38,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $members_result = $conn->query($members_sql);
     $member_count = $members_result->fetch_assoc()['member_count'];
 
+  // put a limit for every team is 5 members
     if ($member_count >= 5) {
       $errors['members'] = "<div class='alert alert-danger m-2'>The team is already full. You cannot join this team.</div>";
     } else {
       $sql = "INSERT INTO teams (name, email, password, phone, age, team) 
                     VALUES ('$name', '$email', '$password', '$phone', '$age', '$team')";
 
+// to save the name an email in a session
       if ($conn->query($sql) === TRUE) {
         $_SESSION['name'] = $name;
         $_SESSION['email'] = $email;
@@ -72,7 +76,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <link rel="stylesheet" href="./register_style.css">
 
-
+<style>
+  body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #1c1c1c;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+</style>
 </head>
 
 <body>
@@ -81,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php if (isset($errors['members'])): ?>
       <?php echo $errors['members']; ?>
     <?php endif; ?>
+
     <form method="POST">
       <div class="mb-3">
         <label for="team-name" class="form-label">Team Name</label>
@@ -92,6 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <option value="team4">Team 4</option>
         </select>
       </div>
+
       <div class="mb-3">
         <label for="name" class="form-label">Full Name</label>
         <input type="text" class="form-control" id="name" name="name" required>
@@ -99,6 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <p class="text-danger"><?php echo $errors['name']; ?></p>
         <?php endif; ?>
       </div>
+
       <div class="mb-3">
         <label for="email" class="form-label">Email Address</label>
         <input type="email" class="form-control" id="email" name="email" required>
@@ -106,6 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <p class="text-danger"><?php echo $errors['email']; ?></p>
         <?php endif; ?>
       </div>
+
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control" id="password" name="password" required>
@@ -113,18 +133,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <p class="text-danger"><?php echo $errors['password']; ?></p>
         <?php endif; ?>
       </div>
+
       <div class="mb-3">
         <label for="phone" class="form-label">Phone Number</label>
         <input type="tel" class="form-control" id="phone" name="phone" required>
       </div>
+
       <div class="mb-3">
         <label for="age" class="form-label">Age</label>
         <input type="number" class="form-control" id="age" name="age" min="18" required>
       </div>
 
       <button type="submit" class="btn btn-primary">Register</button>
-    </form>
 
+    </form>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

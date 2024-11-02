@@ -68,7 +68,12 @@ if (isset($_GET['logout'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Manage Points</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap link -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Font Link -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -88,7 +93,7 @@ if (isset($_GET['logout'])) {
 <body>
     <div class="container">
         <h1 class="text-center">Admin Dashboard - Manage Points</h1>
-
+<!-- alert for actions -->
         <?php if (!empty($message)): ?>
             <div class="alert alert-<?php echo $alert_class; ?> alert-dismissible fade show mt-4" role="alert">
                 <?php echo $message; ?>
@@ -106,7 +111,9 @@ if (isset($_GET['logout'])) {
                     <th>Manage Points</th>
                 </tr>
             </thead>
+
             <tbody>
+              <!-- display the users in teams -->
                 <?php if ($teams_result->num_rows > 0): ?>
                     <?php while ($team_member = $teams_result->fetch_assoc()): ?>
                         <tr>
@@ -114,15 +121,21 @@ if (isset($_GET['logout'])) {
                             <td><?php echo htmlspecialchars($team_member['points']); ?></td>
                             <td><?php echo htmlspecialchars($team_member['team']); ?></td>
                             <td>
+
                                 <form method="POST">
                                     <input type="hidden" name="name" value="<?php echo htmlspecialchars($team_member['name']); ?>">
+
                                     <input type="number" name="points" min="1" class="form-control form-control-sm d-inline w-50 me-2" required>
+
                                     <button type="submit" name="operation" value="add" class="btn btn-success btn-sm">Add</button>
+
                                     <button type="submit" name="operation" value="deduct" class="btn btn-danger btn-sm">Deduct</button>
+
                                 </form>
                             </td>
                         </tr>
                     <?php endwhile; ?>
+                    <!-- if there isn't data for members -->
                 <?php else: ?>
                     <tr>
                         <td colspan="4" class="text-center">No team members found.</td>
@@ -131,8 +144,10 @@ if (isset($_GET['logout'])) {
             </tbody>
         </table>
 
+<!-- table of Individuals -->
         <h3>Individuals</h3>
         <table class="table table-striped mt-4">
+
             <thead>
                 <tr>
                     <th>Name</th>
@@ -140,6 +155,7 @@ if (isset($_GET['logout'])) {
                     <th>Manage Points</th>
                 </tr>
             </thead>
+
             <tbody>
                 <?php if ($individuals_result->num_rows > 0): ?>
                     <?php while ($individual = $individuals_result->fetch_assoc()): ?>
@@ -147,15 +163,21 @@ if (isset($_GET['logout'])) {
                             <td><?php echo htmlspecialchars($individual['name']); ?></td>
                             <td><?php echo htmlspecialchars($individual['points']); ?></td>
                             <td>
+
                                 <form method="POST">
                                     <input type="hidden" name="name" value="<?php echo htmlspecialchars($individual['name']); ?>">
+
                                     <input type="number" name="points" min="1" class="form-control form-control-sm d-inline w-50 me-2" required>
+
                                     <button type="submit" name="operation" value="add" class="btn btn-success btn-sm">Add</button>
+
                                     <button type="submit" name="operation" value="deduct" class="btn btn-danger btn-sm">Deduct</button>
                                 </form>
                             </td>
                         </tr>
                     <?php endwhile; ?>
+
+                    <!-- if there isn't data for members -->
                 <?php else: ?>
                     <tr>
                         <td colspan="3" class="text-center">No individuals found.</td>
@@ -163,6 +185,7 @@ if (isset($_GET['logout'])) {
                 <?php endif; ?>
             </tbody>
         </table>
+
         <a href="?logout=true" class="btn btn-secondary mt-3">Logout</a>
     </div>
 

@@ -8,10 +8,11 @@ session_start()
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resala Tournament</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
 
   <!-- Google Font Link -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- bootstrap link -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 
@@ -50,10 +51,14 @@ session_start()
 </head>
 
 <body>
+
   <?php include './navBar.php'; ?>
 
+<!-- Competitions cards -->
   <div class="container">
     <h1 class="text-center my-4">University Competitions</h1>
+
+
     <div class="card-container">
       <div class="card p-3 text-center">
         <div class="card-body">
@@ -66,7 +71,6 @@ session_start()
         <div class="card-body">
           <h5 class="card-title">Robotics Challenge</h5>
           <p class="card-text">Build and program robots to navigate a maze. Open to beginners and advanced students alike.</p>
-
         </div>
       </div>
 
@@ -74,7 +78,6 @@ session_start()
         <div class="card-body">
           <h5 class="card-title">Football Championship</h5>
           <p class="card-text">Compete with other teams and showcase your skills on the field. Trophies await the champions!</p>
-
         </div>
       </div>
 
@@ -82,7 +85,6 @@ session_start()
         <div class="card-body">
           <h5 class="card-title">Science Fair</h5>
           <p class="card-text">Showcase your innovative science projects and experiments. Open to all departments!</p>
-
         </div>
       </div>
 
@@ -95,6 +97,7 @@ session_start()
     </div>
   </div>
 
+<!-- alert to join the tournament -->
   <div class="container mt-5">
     <div class="alert alert-primary text-center text-light" role="alert">
       <h4 class="alert-heading  ">Join the Tournament!</h4>
@@ -104,6 +107,7 @@ session_start()
     </div>
   </div>
 
+  <!-- accordions for Info -->
   <?php include './tournament_pages/accordion.php' ?>
 
 

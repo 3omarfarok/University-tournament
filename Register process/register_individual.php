@@ -15,28 +15,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
 
-  // استلام البيانات من النموذج
+  // to get the data from user
   $name = trim($_POST['name']);
   $email = trim($_POST['email']);
   $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
   $phone = trim($_POST['phone']);
   $age = trim($_POST['age']);
 
-  // التحقق من صحة البيانات
+  // to check data before post it
   $errors = [];
-
   if (empty($name)) {
     $errors['name'] = "Name is required.";
   }
+
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors['email'] = "Please enter a valid email address.";
   }
+
   if (empty($password)) {
     $errors['password'] = "Password is required.";
   }
+
   if (empty($phone)) {
     $errors['phone'] = "Phone number is required.";
   }
+
   if (empty($age)) {
     $errors['age'] = "Age is required.";
   }
@@ -45,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($errors)) {
     $sql = "INSERT INTO individuals (name, email, password, phone ,age) VALUES ('$name', '$email', '$password', '$phone' ,'$age')";
 
+  // to save the name an email in a session
     if ($conn->query($sql) === TRUE) {
       $_SESSION['name'] = $name;
       $_SESSION['email'] = $email;
@@ -80,13 +84,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <link rel="stylesheet" href="./register_style.css">
 
-
+<style>
+  body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #1c1c1c;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+</style>
 </head>
 
 <body>
   <div class="registration-container">
     <h3 class="text-center mb-4">Individual Registration</h3>
     <form method="POST">
+
       <div class="mb-3">
         <label for="name" class="form-label">Full Name</label>
         <input type="text" class="form-control input-bg" id="name" name="name">
@@ -94,6 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <p class="text-danger"><?php echo $errors['name']; ?></p>
         <?php endif; ?>
       </div>
+
       <div class="mb-3">
         <label for="email" class="form-label">Email Address</label>
         <input type="email" class="form-control input-bg" id="email" name="email">
@@ -101,6 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <p class="text-danger"><?php echo $errors['email']; ?></p>
         <?php endif; ?>
       </div>
+
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control input-bg" id="password" name="password" required>
@@ -108,6 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <p class="text-danger"><?php echo $errors['password']; ?></p>
         <?php endif; ?>
       </div>
+
       <div class="mb-3">
         <label for="phone" class="form-label ">Phone Number</label>
         <input type="tel" class="form-control input-bg" id="phone" name="phone">
@@ -115,6 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <p class="text-danger"><?php echo $errors['phone']; ?></p>
         <?php endif; ?>
       </div>
+
       <div class="mb-3">
         <label for="age" class="form-label">Age</label>
         <input type="number" class="form-control input-bg" id="age" name="age" min="18">
@@ -122,7 +143,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <p class="text-danger"><?php echo $errors['age']; ?></p>
         <?php endif; ?>
       </div>
+
       <button type="submit" class="btn btn-primary">Register</button>
+
     </form>
   </div>
 

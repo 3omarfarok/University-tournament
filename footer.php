@@ -11,12 +11,7 @@
       <div class="row">
         <div class="col-md-12 text-center">
           <hr class="bg-light">
-          <p>&copy; 2024 Resala University. All Rights Reserved.</p>
-          <div class="social-icons">
-            <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
-          </div>
+          <p>&copy; 2024 Resala University. All Rights Reserved.</p>  
         </div>
       </div>
     </div>

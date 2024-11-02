@@ -1,16 +1,18 @@
 <?php
 session_start();
+// looking at user email
 if (!isset($_SESSION['email'])) {
     header("Location: ./Register process/register_individual.php");
     exit();
 }
-
+// make the connection with DB
 $conn = new mysqli('localhost', 'root', '', 'resala_uni');
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// to catch the user from his email
 $email = $_SESSION['email'];
 $sql = "SELECT * FROM individuals WHERE email = '$email'";
 $result = $conn->query($sql);
@@ -91,17 +93,32 @@ $conn->close();
     </style>
 </head>
 <body>
+
   <?php include'navBar.php' ?>
 
 <div class="dashboard-container">
-    <h1 class="welcome-header"><i class="fas fa-user-circle icon"></i> Welcome, <?php echo htmlspecialchars($user['name']); ?>!</h1>
+    <h1 class="welcome-header">
+      <i class="fas fa-user-circle icon"></i>
+      Welcome, <?php echo htmlspecialchars($user['name']); ?>!
+    </h1>
+
     <p class="text-center">Here are your account details:</p>
     <ul class="list-group mt-4">
-        <li class="list-group-item"><strong>Name:</strong> <?php echo htmlspecialchars($user['name']); ?></li>
-        <li class="list-group-item"><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></li>
-        <li class="list-group-item"><strong>Phone:</strong> <?php echo htmlspecialchars($user['phone']); ?></li>
-        <li class="list-group-item"><strong>Age:</strong> <?php echo htmlspecialchars($user['age']); ?></li>
-        <li class="list-group-item"><strong>Points:</strong> <?php echo htmlspecialchars($user['points']); ?></li>
+        <li class="list-group-item"><strong>Name:</strong>
+        <?php echo htmlspecialchars($user['name']); ?></li>
+
+        <li class="list-group-item"><strong>Email:</strong> 
+        <?php echo htmlspecialchars($user['email']); ?></li>
+
+        <li class="list-group-item"><strong>Phone:</strong>
+        <?php echo htmlspecialchars($user['phone']); ?></li>
+
+        <li class="list-group-item"><strong>Age:</strong> 
+        <?php echo htmlspecialchars($user['age']); ?></li>
+
+        <li class="list-group-item"><strong>Points:</strong> 
+        <?php echo htmlspecialchars($user['points']); ?></li>
+        
     </ul>
     <a href="index.php" class="btn-dashboard text-decoration-none">Go to Home page</a>
 </div>
