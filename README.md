@@ -18,4 +18,4 @@ A website for a fictional university where students can register their data to p
 ## 🚀 Getting Started
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/repository-name.git
+   git clone https://github.com/3omarfarok/University-tournament.git
